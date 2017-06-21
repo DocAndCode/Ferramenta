@@ -140,7 +140,7 @@ def getCommits():
                 'login': commitData['author']['login'],
                 'url': commitData['author']['html_url'],
             },
-            'link': commitData['commit']['url'],
+            'link': commitData['html_url'],
             'files': files,
             'additions': additions,
             'deletions': deletions
