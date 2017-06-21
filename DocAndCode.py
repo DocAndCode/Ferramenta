@@ -21,7 +21,8 @@ repoName = ''
 #######################################################
 
 repoInfo = '{}/{}'.format(repoOwner, repoName)
-reportDir = 'Report'
+dirPath = ''
+reportDir = '{}Report'.format(dirPath)
 headers = {
     'User-Agent': 'request'
 }
@@ -173,15 +174,15 @@ def printCommitsToFile(myjson):
 
 
 def createReportFile():
-    report = open('DocAndCode.md', 'w+')
+    report = open('{}DocAndCode.md'.format(dirPath), 'w+')
     report.write('## Relatório Doc&Code\n\n')
     report.write('### Issues:\n\n')
     report.close()
 
 
 def updateReport(myjson):
-    report = open('DocAndCode.md', 'a')
-    report.write('[#{} - {}]({}/{})\n\n'.format(myjson['number'], myjson['title'], reportDir, myjson['number']))
+    report = open('{}DocAndCode.md'.format(dirPath), 'a')
+    report.write('[#{} - {}](issue_{})\n\n'.format(myjson['number'], myjson['title'], myjson['number']))
     report.close()
 
 
@@ -189,4 +190,4 @@ cleanFiles()
 createReportFile()
 getIssues()
 getCommits()
-print('Processo Finalizado\n\nRelatório Doc&Code gerado em Report/\n')
+print('Processo Finalizado\n\nRelatório Doc&Code gerado em {}\n'.format(dirPath))
